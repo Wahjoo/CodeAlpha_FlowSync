@@ -17,7 +17,7 @@ import Support from './components/Support';
 import { Check } from 'lucide-react';
 
 const App = () => {
-  const { user, logout } = useAuth();
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
