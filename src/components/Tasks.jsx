@@ -180,12 +180,12 @@ const Tasks = () => {
         </div>
 
         {/* Task Progress Asymmetric Layout */}
-        <section className="grid grid-cols-12 gap-6 pb-12">
-          <div className="col-span-12">
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-6 pb-12">
+          <div className="col-span-1 md:col-span-12">
             <h4 className="font-headline-md text-on-surface mb-4">Productivity Pulse</h4>
           </div>
           
-          <div className="col-span-4 bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10">
+          <div className="col-span-1 md:col-span-4 bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10">
             <div className="text-on-surface-variant text-label-md mb-2">Completion Velocity</div>
             <div className="text-[40px] font-bold text-on-surface leading-none">{completionVelocity} <span className="text-secondary text-label-md">tasks/day</span></div>
             <p className="text-label-sm text-secondary mt-4 flex items-center gap-1">
@@ -193,7 +193,7 @@ const Tasks = () => {
             </p>
           </div>
           
-          <div className="col-span-8 bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10 flex items-center justify-between">
+          <div className="col-span-1 md:col-span-8 bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/10 flex items-center justify-between">
             <div className="space-y-4 flex-1 pr-12 max-h-32 overflow-y-auto custom-scrollbar">
               {Object.keys(projectStats).length === 0 ? (
                 <p className="text-label-sm text-on-surface-variant">No project data available.</p>
