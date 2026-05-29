@@ -231,7 +231,7 @@ const LandingPage = () => {
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <button
-                  onClick={onSignupClick}
+                  onClick={() => navigate('/signup')}
                   className="bg-secondary text-on-secondary px-10 py-4 rounded-xl font-label-md text-label-md text-lg transition-all active:scale-95 shadow-xl hover:brightness-110 cursor-pointer font-bold"
                 >
                   Sign Up Now
