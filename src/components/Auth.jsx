@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const Auth = ({ initialIsLogin = true, onBackToLanding }) => {
+const Auth = ({ initialIsLogin = true }) => {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(initialIsLogin);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -48,19 +50,17 @@ const Auth = ({ initialIsLogin = true, onBackToLanding }) => {
 
   return (
     <div className="min-h-screen w-screen flex flex-col items-center justify-center bg-background text-on-surface p-4 relative">
-      {onBackToLanding && (
-        <button
-          onClick={onBackToLanding}
-          className="absolute top-6 left-6 flex items-center gap-2 text-on-surface-variant hover:text-secondary transition-all cursor-pointer font-semibold"
-        >
-          <i className="fa-solid fa-arrow-left text-sm"></i>
-          Back to Home
-        </button>
-      )}
+      <button
+        onClick={() => navigate('/')}
+        className="absolute top-6 left-6 flex items-center gap-2 text-on-surface-variant hover:text-secondary transition-all cursor-pointer font-semibold"
+      >
+        <i className="fa-solid fa-arrow-left text-sm"></i>
+        Back to Home
+      </button>
 
       <div className="w-full max-w-[420px] bg-surface-container-lowest border border-outline-variant/10 rounded-xl p-8 shadow-[0_4px_12px_rgba(19,27,46,0.04)]">
         <div 
-          onClick={onBackToLanding}
+          onClick={() => navigate('/')}
           className="flex flex-col items-center gap-3 mb-8 text-center cursor-pointer group"
           title="Back to Landing Page"
         >
@@ -177,16 +177,16 @@ const Auth = ({ initialIsLogin = true, onBackToLanding }) => {
           {isLogin ? (
             <span>
               Don't have an account?{' '}
-              <span className="text-secondary font-semibold cursor-pointer hover:underline" onClick={() => handleToggleMode(false)}>
+              <Link to="/signup" className="text-secondary font-semibold cursor-pointer hover:underline" onClick={() => handleToggleMode(false)}>
                 Register
-              </span>
+              </Link>
             </span>
           ) : (
             <span>
               Already have an account?{' '}
-              <span className="text-secondary font-semibold cursor-pointer hover:underline" onClick={() => handleToggleMode(true)}>
+              <Link to="/login" className="text-secondary font-semibold cursor-pointer hover:underline" onClick={() => handleToggleMode(true)}>
                 Sign In
-              </span>
+              </Link>
             </span>
           )}
         </div>

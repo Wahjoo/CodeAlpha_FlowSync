@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const LandingPage = ({ onLoginClick, onSignupClick }) => {
+const LandingPage = () => {
+  const navigate = useNavigate();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -24,16 +26,10 @@ const LandingPage = ({ onLoginClick, onSignupClick }) => {
             <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="font-headline-md text-headline-md text-primary tracking-tight font-bold hover:text-secondary transition-colors cursor-pointer">FlowSync</a>
           </div>
           <div className="flex items-center gap-4">
-            <button
-              onClick={onLoginClick}
-              className="hidden md:block font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all active:scale-95 cursor-pointer font-semibold"
-            >
+            <button onClick={() => navigate('/login')} className="hidden md:block font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all active:scale-95 cursor-pointer font-semibold">
               Login
             </button>
-            <button
-              onClick={onSignupClick}
-              className="bg-secondary text-on-secondary px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 shadow-[0_2px_0_rgba(0,0,0,0.1)] hover:bg-on-secondary-fixed-variant cursor-pointer font-semibold"
-            >
+            <button onClick={() => navigate('/signup')} className="bg-secondary text-on-secondary px-6 py-2.5 rounded-full font-label-md text-label-md transition-all active:scale-95 shadow-[0_2px_0_rgba(0,0,0,0.1)] hover:bg-on-secondary-fixed-variant cursor-pointer font-semibold">
               Get Started
             </button>
           </div>
@@ -58,7 +54,7 @@ const LandingPage = ({ onLoginClick, onSignupClick }) => {
 
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-4">
             <button
-              onClick={onSignupClick}
+              onClick={() => navigate('/signup')}
               className="bg-secondary text-on-secondary px-10 py-4 rounded-xl font-label-md text-label-md text-lg transition-all active:scale-95 shadow-[0_4px_12px_rgba(49,107,243,0.3)] hover:brightness-110 cursor-pointer font-bold"
             >
               Get Started for Free
