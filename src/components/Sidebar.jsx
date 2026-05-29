@@ -12,12 +12,12 @@ const Sidebar = ({ isOpen, onClose }) => {
       {/* Mobile Backdrop */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          className="fixed inset-0 bg-black/50 z-[90] md:hidden"
           onClick={onClose}
         ></div>
       )}
       
-      <aside className={`fixed left-0 top-0 bottom-0 flex flex-col p-stack-md z-50 border-r border-outline-variant/30 bg-surface-container-low dark:bg-primary-container h-screen w-64 shadow-sm transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
+      <aside className={`fixed left-0 top-0 bottom-0 flex flex-col p-stack-md z-[100] border-r border-outline-variant/30 bg-surface-container-low dark:bg-primary-container h-screen w-64 shadow-sm transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
       <Link 
         to="/"
         className="flex items-center gap-3 mb-10 px-2 cursor-pointer hover:opacity-85 transition-opacity block"
@@ -37,7 +37,7 @@ const Sidebar = ({ isOpen, onClose }) => {
           onClick={onClose}
           to="/"
           className={`w-full flex items-center gap-stack-md rounded-lg px-stack-md py-stack-sm cursor-pointer transition-all duration-200 active:translate-x-1 ${
-            path === '/' || path === '/create-project'
+            path === '/' || path === '/dashboard' || path === '/create-project' || path.startsWith('/project')
               ? 'bg-secondary-container text-on-secondary-container font-semibold'
               : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-secondary-container/20'
           }`}
@@ -50,7 +50,7 @@ const Sidebar = ({ isOpen, onClose }) => {
           onClick={onClose}
           to="/task"
           className={`w-full flex items-center gap-stack-md rounded-lg px-stack-md py-stack-sm cursor-pointer transition-all duration-200 active:translate-x-1 ${
-            path.startsWith('/task') || path.startsWith('/project')
+            path.startsWith('/task')
               ? 'bg-secondary-container text-on-secondary-container font-semibold'
               : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-secondary-container/20'
           }`}
