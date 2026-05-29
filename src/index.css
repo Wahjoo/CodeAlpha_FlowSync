@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-container: #131b2e;
+  --color-secondary-container: #316bf3;
+  --color-outline-variant: #c6c6cd;
+  --color-on-secondary-fixed: #00174b;
+  --color-error: #ba1a1a;
+  --color-tertiary-fixed-dim: #c3c7cb;
+  --color-on-surface-variant: #45464d;
+  --color-on-primary-container: #7c839b;
+  --color-on-surface: #0b1c30;
+  --color-surface: #f8f9ff;
+  --color-primary-fixed-dim: #bec6e0;
+  --color-primary: #000000;
+  --color-on-tertiary-container: #808488;
+  --color-surface-tint: #565e74;
+  --color-surface-container-highest: #d3e4fe;
+  --color-on-secondary-container: #fefcff;
+  --color-background: #f8f9ff;
+  --color-surface-container-low: #eff4ff;
+  --color-tertiary-container: #171c1f;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-primary-fixed-variant: #3f465c;
+  --color-tertiary-fixed: #dfe3e7;
+  --color-on-error-container: #93000a;
+  --color-on-secondary: #ffffff;
+  --color-surface-container-high: #dce9ff;
+  --color-tertiary: #000000;
+  --color-surface-bright: #f8f9ff;
+  --color-on-background: #0b1c30;
+  --color-inverse-surface: #213145;
+  --color-surface-container: #e5eeff;
+  --color-secondary-fixed-dim: #b4c5ff;
+  --color-on-tertiary: #ffffff;
+  --color-primary-fixed: #dae2fd;
+  --color-on-primary: #ffffff;
+  --color-on-tertiary-fixed-variant: #43474b;
+  --color-error-container: #ffdad6;
+  --color-on-primary-fixed: #131b2e;
+  --color-outline: #76777d;
+  --color-inverse-primary: #bec6e0;
+  --color-secondary: #0051d5;
+  --color-on-secondary-fixed-variant: #003ea8;
+  --color-on-error: #ffffff;
+  --color-inverse-on-surface: #eaf1ff;
+  --color-surface-variant: #d3e4fe;
+  --color-surface-dim: #cbdbf5;
+  --color-on-tertiary-fixed: #171c1f;
+  --color-secondary-fixed: #dbe1ff;
+
+  --border-radius-default: 0.25rem;
+  --border-radius-lg: 0.5rem;
+  --border-radius-xl: 0.75rem;
+  --border-radius-full: 9999px;
+
+  --spacing-gutter-mobile: 16px;
+  --spacing-base: 4px;
+  --spacing-stack-md: 16px;
+  --spacing-margin-mobile: 20px;
+  --spacing-stack-sm: 8px;
+  --spacing-stack-lg: 24px;
+
+  --font-headline-md: "Hanken Grotesk", sans-serif;
+  --font-label-md: "Inter", sans-serif;
+  --font-body-lg: "Inter", sans-serif;
+  --font-body-md: "Inter", sans-serif;
+  --font-headline-lg: "Hanken Grotesk", sans-serif;
+  --font-headline-lg-mobile: "Hanken Grotesk", sans-serif;
+  --font-label-sm: "Inter", sans-serif;
+
+  --font-size-headline-md: 20px;
+  --font-size-label-md: 12px;
+  --font-size-body-lg: 16px;
+  --font-size-body-md: 14px;
+  --font-size-headline-lg: 32px;
+  --font-size-headline-lg-mobile: 26px;
+  --font-size-label-sm: 11px;
+}
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9ff;
+  }
+}
+
+
+
+/* Progress circle styling */
+.progress-ring__circle {
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #dce9ff;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #316bf3;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #e5eeff;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #d3e4fe;
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at 50% -20%, #e5eeff 0%, #f8f9ff 70%);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+}
+
