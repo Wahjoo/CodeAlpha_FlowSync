@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { api } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
 
-const Team = () => {
+const Team = ({ onOpenChat }) => {
   const { user } = useAuth();
   const [teamMembers, setTeamMembers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -157,7 +157,10 @@ const Team = () => {
                 ) : (
                   <button className="flex-1 py-2 rounded-xl bg-surface-container-low hover:bg-surface-container-highest font-label-md text-label-md transition-colors text-on-surface cursor-pointer">Profile</button>
                 )}
-                <button className="w-10 h-10 flex items-center justify-center rounded-xl bg-secondary-fixed text-secondary hover:bg-secondary-container hover:text-white transition-all cursor-pointer">
+                <button 
+                  onClick={() => onOpenChat && onOpenChat(member)}
+                  className="w-10 h-10 flex items-center justify-center rounded-xl bg-secondary-fixed text-secondary hover:bg-secondary-container hover:text-white transition-all cursor-pointer"
+                >
                   <i className="fa-solid fa-comment-dots text-lg"></i>
                 </button>
               </div>

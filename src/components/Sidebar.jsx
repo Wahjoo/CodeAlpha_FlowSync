@@ -3,9 +3,11 @@ import { useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Sidebar = ({ isOpen, onClose }) => {
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
   const location = useLocation();
   const path = location.pathname;
+
+  const isAdmin = user?.type === 'Admin' || user?.type === 'Superadmin';
 
   return (
     <>
@@ -71,6 +73,21 @@ const Sidebar = ({ isOpen, onClose }) => {
           <i className="fa-solid fa-users w-5 text-center text-lg"></i>
           <span className="font-label-md text-label-md">Team</span>
         </Link>
+
+        {isAdmin && (
+          <Link
+            onClick={onClose}
+            to="/users"
+            className={`w-full flex items-center gap-stack-md rounded-lg px-stack-md py-stack-sm cursor-pointer transition-all duration-200 active:translate-x-1 ${
+              path.startsWith('/users')
+                ? 'bg-secondary-container text-on-secondary-container font-semibold'
+                : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-secondary-container/20'
+            }`}
+          >
+            <i className="fa-solid fa-user-gear w-5 text-center text-lg"></i>
+            <span className="font-label-md text-label-md">Users Mgmt</span>
+          </Link>
+        )}
 
         <Link
           onClick={onClose}

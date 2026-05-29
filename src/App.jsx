@@ -14,6 +14,8 @@ import Tasks from './components/Tasks';
 import Team from './components/Team';
 import Settings from './components/Settings';
 import Support from './components/Support';
+import Users from './components/Users';
+import ChatWidget from './components/ChatWidget';
 import { Check } from 'lucide-react';
 
 const App = () => {
@@ -34,6 +36,9 @@ const App = () => {
 
   // Modals Toggles State
   const [activeTaskDetailsId, setActiveTaskDetailsId] = useState(null);
+
+  // Chat State
+  const [activeChatUser, setActiveChatUser] = useState(null);
 
   // Fetch Projects list
   useEffect(() => {
@@ -429,7 +434,8 @@ const App = () => {
           } />
 
           <Route path="/task" element={<Tasks />} />
-          <Route path="/team" element={<Team />} />
+          <Route path="/team" element={<Team onOpenChat={setActiveChatUser} />} />
+          <Route path="/users" element={<Users onOpenChat={setActiveChatUser} />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/support" element={<Support />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
@@ -447,6 +453,11 @@ const App = () => {
             onDeleteTask={handleDeleteTask}
           />
         )}
+        {/* Chat Widget rendering globally so it persists across navigation */}
+        <ChatWidget 
+          activeChatUser={activeChatUser} 
+          onClose={() => setActiveChatUser(null)} 
+        />
       </main>
     </div>
   );

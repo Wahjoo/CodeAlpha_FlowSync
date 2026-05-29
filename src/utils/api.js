@@ -227,4 +227,21 @@ export const api = {
     });
     return handleResponse(res);
   },
+  // Messages / Chat
+  getMessages: async (userId) => {
+    const res = await fetch(`${BASE_URL}/messages/${userId}`, {
+      method: 'GET',
+      headers: getHeaders(),
+    });
+    return handleResponse(res);
+  },
+
+  sendMessage: async (receiverId, content) => {
+    const res = await fetch(`${BASE_URL}/messages`, {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({ receiverId, content }),
+    });
+    return handleResponse(res);
+  },
 };

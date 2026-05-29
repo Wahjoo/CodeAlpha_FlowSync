@@ -35,6 +35,7 @@ import taskRoutes from './routes/taskRoutes.js';
 import commentRoutes from './routes/commentRoutes.js';
 import notificationRoutes from './routes/notificationRoutes.js';
 import supportRoutes from './routes/supportRoutes.js';
+import messageRoutes from './routes/messageRoutes.js';
 
 // Import Middlewares
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
@@ -72,6 +73,7 @@ app.use('/api/tasks', taskRoutes);
 app.use('/api/comments', commentRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/support', supportRoutes);
+app.use('/api/messages', messageRoutes);
 
 // Test endpoint
 app.get('/', (req, res) => {
