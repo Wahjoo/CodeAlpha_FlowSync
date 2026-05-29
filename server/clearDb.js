@@ -7,17 +7,9 @@ const clearDb = async () => {
     await mongoose.connect(process.env.MONGODB_URI);
     console.log('Connected to MongoDB');
     
-    // Get all collections
-    const collections = mongoose.connection.collections;
-    
-    // Loop over the collections and drop them
-    for (const key in collections) {
-      const collection = collections[key];
-      await collection.deleteMany({});
-      console.log(`Cleared ${collection.name}`);
-    }
-    
-    console.log('Database successfully cleared!');
+    // Drop the entire database to clear all data
+    await mongoose.connection.db.dropDatabase();
+    console.log('Database dropped and successfully cleared!');
     process.exit(0);
   } catch (error) {
     console.error('Error clearing database:', error);

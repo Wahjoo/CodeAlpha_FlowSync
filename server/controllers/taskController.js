@@ -307,12 +307,20 @@ export const getMyTasks = async (req, res, next) => {
   }
 };
 
-// @desc    Get all tasks for all projects in the database
+// @desc    Get all tasks for all projects in the database (filtered by user access)
 // @route   GET /api/tasks/all
 // @access  Private
 export const getAllTasks = async (req, res, next) => {
   try {
-    const tasks = await Task.find({})
+    const userProjects = await Project.find({
+      $or: [
+        { owner: req.user._id },
+        { 'members.user': req.user._id }
+      ]
+    }).select('_id');
+    const userProjectIds = userProjects.map(p => p._id);
+
+    const tasks = await Task.find({ project: { $in: userProjectIds } })
       .populate('project', 'name')
       .populate('creator', 'name avatarUrl')
       .populate('assignee', 'name avatarUrl')
@@ -329,6 +337,14 @@ export const getAllTasks = async (req, res, next) => {
 // @access  Private
 export const getWorkspaceAnalytics = async (req, res, next) => {
   try {
+    const userProjects = await Project.find({
+      $or: [
+        { owner: req.user._id },
+        { 'members.user': req.user._id }
+      ]
+    }).select('_id');
+    const userProjectIds = userProjects.map(p => p._id);
+
     // 1. Get all lists that might be considered "Done"
     const doneLists = await List.find({ name: { $regex: /done|completed|finished/i } });
     const doneListIds = doneLists.map(l => l._id);
@@ -338,18 +354,25 @@ export const getWorkspaceAnalytics = async (req, res, next) => {
     startOfToday.setHours(0, 0, 0, 0);
 
     const completedToday = await Task.countDocuments({
+      project: { $in: userProjectIds },
       list: { $in: doneListIds },
       updatedAt: { $gte: startOfToday }
     });
 
     // 3. Count total completed tasks to generate a realistic mock for Focus Hours
-    const totalCompletedTasks = await Task.countDocuments({ list: { $in: doneListIds } });
+    const totalCompletedTasks = await Task.countDocuments({ 
+      project: { $in: userProjectIds },
+      list: { $in: doneListIds } 
+    });
 
     // Assuming average 1.5 hours per task
     const focusHours = (totalCompletedTasks * 1.5).toFixed(1);
 
     // 4. Generate a mock team velocity based on active tasks
-    const activeTasks = await Task.countDocuments({ list: { $nin: doneListIds } });
+    const activeTasks = await Task.countDocuments({ 
+      project: { $in: userProjectIds },
+      list: { $nin: doneListIds } 
+    });
     const teamVelocity = activeTasks > 0 ? `+${Math.min(100, Math.round((completedToday / activeTasks) * 100))}%` : '+0%';
 
     // 5. Mock efficiency report values
