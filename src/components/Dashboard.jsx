@@ -57,7 +57,7 @@ const Dashboard = ({
     <div className="flex-1 min-h-screen bg-background text-on-surface">
       {/* TopNavBar */}
       <header className="flex items-center justify-between px-gutter-mobile md:px-stack-lg sticky top-0 z-50 w-full bg-surface-container-lowest shadow-sm h-16">
-        <div className="flex items-center gap-stack-lg flex-1">
+        <div className="flex items-center gap-2 md:gap-stack-lg flex-1 mr-2 md:mr-0">
           <div className="relative w-full max-w-md">
             <i className="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant"></i>
             <input 
@@ -70,7 +70,7 @@ const Dashboard = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-stack-md relative">
+        <div className="flex items-center gap-1 md:gap-stack-md relative">
           <button 
             onClick={() => setShowNotifications(!showNotifications)}
             className="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 active:scale-95 relative cursor-pointer"
@@ -114,7 +114,7 @@ const Dashboard = ({
             <i className="fa-solid fa-circle-info text-lg"></i>
           </button>
           
-          <div className="h-8 w-[1px] bg-outline-variant/30 mx-2"></div>
+          <div className="hidden md:block h-8 w-[1px] bg-outline-variant/30 mx-2"></div>
           
           <div className="flex items-center gap-stack-sm cursor-pointer hover:bg-surface-container-low p-1 rounded-full transition-all">
             <div className="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-xs">

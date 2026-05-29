@@ -2,13 +2,22 @@ import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, onClose }) => {
   const { logout } = useAuth();
   const location = useLocation();
   const path = location.pathname;
 
   return (
-    <aside className="fixed left-0 top-0 bottom-0 flex flex-col p-stack-md z-40 border-r border-outline-variant/30 bg-surface-container-low dark:bg-primary-container h-screen w-64 shadow-sm">
+    <>
+      {/* Mobile Backdrop */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={onClose}
+        ></div>
+      )}
+      
+      <aside className={`fixed left-0 top-0 bottom-0 flex flex-col p-stack-md z-50 border-r border-outline-variant/30 bg-surface-container-low dark:bg-primary-container h-screen w-64 shadow-sm transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
       <Link 
         to="/"
         className="flex items-center gap-3 mb-10 px-2 cursor-pointer hover:opacity-85 transition-opacity block"
@@ -25,6 +34,7 @@ const Sidebar = () => {
 
       <nav className="flex-1 flex flex-col gap-2">
         <Link
+          onClick={onClose}
           to="/"
           className={`w-full flex items-center gap-stack-md rounded-lg px-stack-md py-stack-sm cursor-pointer transition-all duration-200 active:translate-x-1 ${
             path === '/' || path === '/create-project'
@@ -37,6 +47,7 @@ const Sidebar = () => {
         </Link>
 
         <Link
+          onClick={onClose}
           to="/task"
           className={`w-full flex items-center gap-stack-md rounded-lg px-stack-md py-stack-sm cursor-pointer transition-all duration-200 active:translate-x-1 ${
             path.startsWith('/task') || path.startsWith('/project')
@@ -49,6 +60,7 @@ const Sidebar = () => {
         </Link>
 
         <Link
+          onClick={onClose}
           to="/team"
           className={`w-full flex items-center gap-stack-md rounded-lg px-stack-md py-stack-sm cursor-pointer transition-all duration-200 active:translate-x-1 ${
             path.startsWith('/team')
@@ -61,6 +73,7 @@ const Sidebar = () => {
         </Link>
 
         <Link
+          onClick={onClose}
           to="/settings"
           className={`w-full flex items-center gap-stack-md rounded-lg px-stack-md py-stack-sm cursor-pointer transition-all duration-200 active:translate-x-1 ${
             path.startsWith('/settings')
@@ -82,7 +95,8 @@ const Sidebar = () => {
       </Link>
 
       <div className="mt-auto border-t border-outline-variant/20 pt-4 flex flex-col gap-2">
-        <Link 
+        <Link
+          onClick={onClose} 
           to="/support"
           className={`w-full flex items-center gap-stack-md rounded-lg px-stack-md py-stack-sm cursor-pointer transition-all duration-200 active:translate-x-1 ${
             path.startsWith('/support')
@@ -99,9 +113,10 @@ const Sidebar = () => {
         >
           <i className="fa-solid fa-right-from-bracket w-5 text-center text-lg"></i>
           <span className="font-label-md text-label-md">Logout</span>
-        </button>
-      </div>
-    </aside>
+          </button>
+        </div>
+      </aside>
+    </>
   );
 };
 

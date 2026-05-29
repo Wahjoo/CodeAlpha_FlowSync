@@ -119,7 +119,7 @@ const CreateProject = ({ users = [], onSave, onCancel }) => {
               
               <div className="space-y-stack-md">
                 <label className="font-label-md text-label-md text-on-surface">Privacy Settings</label>
-                <div className="grid grid-cols-2 gap-stack-md">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
                   <label 
                     onClick={() => setPrivacy('public')}
                     className={`relative flex flex-col p-4 rounded-xl border-2 cursor-pointer transition-all ${
@@ -244,22 +244,22 @@ const CreateProject = ({ users = [], onSave, onCancel }) => {
           </div>
 
           {/* Form Footer Actions */}
-          <div className="px-stack-lg py-stack-md bg-surface-container-low/30 border-t border-outline-variant/10 flex items-center justify-between">
-            <div className="flex items-center gap-2 text-on-surface-variant text-xs">
+          <div className="px-stack-lg py-stack-md bg-surface-container-low/30 border-t border-outline-variant/10 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2 text-on-surface-variant text-xs text-center md:text-left">
               <i className="fa-solid fa-circle-info text-[16px]"></i>
               <span>Project templates are available for quick start.</span>
             </div>
-            <div className="flex items-center gap-stack-md">
+            <div className="flex items-center gap-stack-md w-full md:w-auto">
               <button 
                 type="button" 
                 onClick={onCancel}
-                className="px-6 py-2.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-95 cursor-pointer text-sm"
+                className="flex-1 md:flex-none px-6 py-2.5 rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-all active:scale-95 cursor-pointer text-sm"
               >
                 Cancel
               </button>
               <button 
                 type="submit" 
-                className="px-8 py-2.5 rounded-xl bg-secondary text-white font-bold hover:bg-secondary/90 active:scale-95 transition-all cursor-pointer text-sm"
+                className="flex-1 md:flex-none px-8 py-2.5 rounded-xl bg-secondary text-white font-bold hover:bg-secondary/90 active:scale-95 transition-all cursor-pointer text-sm"
               >
                 Create Project
               </button>

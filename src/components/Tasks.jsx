@@ -62,23 +62,23 @@ const Tasks = () => {
     <div className="p-8 w-full">
       <div className="max-w-7xl mx-auto space-y-stack-lg">
         {/* Header Section */}
-        <div className="flex justify-between items-end">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
           <div>
             <h2 className="font-headline-lg text-headline-lg text-on-surface">Task Overview</h2>
             <p className="text-on-surface-variant mt-1">Manage and track your team's workflow momentum.</p>
           </div>
-          <div className="flex bg-surface-container p-1 rounded-xl">
-            <button className="px-4 py-1.5 rounded-lg bg-surface-container-lowest shadow-sm font-label-md text-secondary transition-all">All Tasks</button>
-            <button className="px-4 py-1.5 rounded-lg font-label-md text-on-surface-variant hover:text-on-surface transition-all">To Do</button>
-            <button className="px-4 py-1.5 rounded-lg font-label-md text-on-surface-variant hover:text-on-surface transition-all">In Progress</button>
-            <button className="px-4 py-1.5 rounded-lg font-label-md text-on-surface-variant hover:text-on-surface transition-all">Done</button>
+          <div className="flex bg-surface-container p-1 rounded-xl overflow-x-auto max-w-full custom-scrollbar pb-1">
+            <button className="px-4 py-1.5 rounded-lg bg-surface-container-lowest shadow-sm font-label-md text-secondary transition-all whitespace-nowrap">All Tasks</button>
+            <button className="px-4 py-1.5 rounded-lg font-label-md text-on-surface-variant hover:text-on-surface transition-all whitespace-nowrap">To Do</button>
+            <button className="px-4 py-1.5 rounded-lg font-label-md text-on-surface-variant hover:text-on-surface transition-all whitespace-nowrap">In Progress</button>
+            <button className="px-4 py-1.5 rounded-lg font-label-md text-on-surface-variant hover:text-on-surface transition-all whitespace-nowrap">Done</button>
           </div>
         </div>
 
         {/* Bento Layout Content */}
-        <div className="grid grid-cols-12 gap-6">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6">
           {/* Main Tasks Column */}
-          <div className="col-span-8 space-y-6">
+          <div className="lg:col-span-8 space-y-6">
             {/* Task Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {tasks.map(task => {
@@ -111,7 +111,7 @@ const Tasks = () => {
           </div>
 
           {/* Sidebar Content (Upcoming & Success Log) */}
-          <div className="col-span-4 space-y-6">
+          <div className="lg:col-span-4 space-y-6">
             {/* Upcoming Tasks */}
             <section className="bg-surface-container-low p-6 rounded-2xl shadow-sm space-y-4">
               <div className="flex items-center gap-2 mb-2">

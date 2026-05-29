@@ -111,7 +111,7 @@ const Board = ({
   return (
     <div className="flex-grow flex flex-col min-w-0 bg-surface text-on-surface">
       {/* Board Header details */}
-      <section className="p-stack-lg flex items-center justify-between border-b border-outline-variant/10">
+      <section className="p-stack-lg flex flex-col md:flex-row md:items-center justify-between border-b border-outline-variant/10 gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <button 
@@ -151,7 +151,7 @@ const Board = ({
       </section>
 
       {/* Kanban Board columns lane */}
-      <div className="flex-grow overflow-x-auto p-stack-lg pt-4 flex gap-stack-lg items-start custom-scrollbar">
+      <div className="flex-grow overflow-x-auto p-stack-lg pt-4 flex gap-stack-lg items-start custom-scrollbar snap-x snap-mandatory">
         {lists.map((list) => {
           const listTasks = getTasksForList(list._id);
           const isAddingTask = activeListAddTask === list._id;
@@ -159,7 +159,7 @@ const Board = ({
           return (
             <div 
               key={list._id} 
-              className={`flex flex-col min-w-[300px] w-80 bg-surface-container-low/50 rounded-2xl p-4 border transition-all ${
+              className={`flex flex-col min-w-[300px] w-[85vw] md:w-80 bg-surface-container-low/50 rounded-2xl p-4 border transition-all snap-center ${
                 activeDragOverList === list._id ? 'border-dashed border-secondary bg-surface-container-high/50' : 'border-transparent'
               }`}
               onDragOver={(e) => handleDragOver(e, list._id)}

@@ -137,7 +137,7 @@ const TaskModal = ({ task, listName, projectMembers, onClose, onUpdateTask, onDe
         </header>
 
         {/* Modal content body split columns */}
-        <div className="flex-1 flex overflow-hidden">
+        <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
           
           {/* Left panel: Task detail configs */}
           <section className="flex-[1.5] p-stack-lg overflow-y-auto custom-scrollbar space-y-8">
@@ -167,7 +167,7 @@ const TaskModal = ({ task, listName, projectMembers, onClose, onUpdateTask, onDe
                 </div>
               </div>
 
-              <div className="flex items-center gap-6 text-on-surface-variant text-sm mt-3 px-2">
+              <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 text-on-surface-variant text-sm mt-3 px-2">
                 <div className="flex items-center gap-1.5">
                   <i className="fa-solid fa-calendar-days text-[16px]"></i>
                   <input
@@ -199,7 +199,7 @@ const TaskModal = ({ task, listName, projectMembers, onClose, onUpdateTask, onDe
             </div>
 
             {/* Bento Grid Metadata Sections */}
-            <div className="grid grid-cols-2 gap-stack-md">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
               <div className="bg-surface-container-lowest p-stack-md rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.04)] border border-outline-variant/10">
                 <p className="text-[10px] uppercase tracking-widest text-outline font-bold mb-3">Assigned Member</p>
                 <div className="flex items-center gap-2">
@@ -285,8 +285,8 @@ const TaskModal = ({ task, listName, projectMembers, onClose, onUpdateTask, onDe
             </div>
           </section>
 
-          {/* Right panel: Activity feed chat stream */}
-          <section className="w-[420px] bg-surface-container-low border-l border-outline-variant/20 flex flex-col flex-shrink-0">
+          {/* Right panel: Comments & Activity Log */}
+          <section className="w-full md:w-[420px] bg-surface-container-low border-t md:border-t-0 md:border-l border-outline-variant/20 flex flex-col flex-shrink-0 h-[60vh] md:h-auto">
             <div className="p-stack-md border-b border-outline-variant/10 flex items-center justify-between bg-surface-container-low/80 backdrop-blur-md flex-shrink-0">
               <div className="flex items-center gap-2 text-on-surface">
                 <i className="fa-solid fa-comments text-secondary text-lg"></i>

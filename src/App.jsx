@@ -17,10 +17,11 @@ import Support from './components/Support';
 import { Check } from 'lucide-react';
 
 const App = () => {
-  const { user, loading } = useAuth();
-  const socket = useSocket();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const socket = useSocket();
 
   const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState([]);
@@ -353,10 +354,26 @@ const App = () => {
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-background text-on-surface">
       {/* Sidebar navigation */}
-      <Sidebar />
+      <Sidebar isOpen={isMobileSidebarOpen} onClose={() => setIsMobileSidebarOpen(false)} />
 
       {/* Main Workspace Frame */}
-      <main className="pl-64 flex-grow flex flex-col min-w-0 h-screen overflow-y-auto overflow-x-hidden relative custom-scrollbar">
+      <main className="md:pl-64 flex-grow flex flex-col min-w-0 h-screen overflow-y-auto overflow-x-hidden relative custom-scrollbar">
+        {/* Mobile Header Bar */}
+        <div className="md:hidden flex items-center justify-between p-4 bg-surface-container-lowest border-b border-outline-variant/10 sticky top-0 z-40 w-full">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center text-white">
+              <i className="fa-solid fa-rotate text-sm"></i>
+            </div>
+            <h1 className="font-headline-sm text-headline-sm font-bold text-on-surface">FlowSync</h1>
+          </div>
+          <button 
+            onClick={() => setIsMobileSidebarOpen(true)}
+            className="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors"
+          >
+            <i className="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/login" element={<Navigate to="/dashboard" replace />} />
