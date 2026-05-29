@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    setLoading(true);
     try {
       const data = await api.login(email, password);
       localStorage.setItem('token', data.token);
@@ -42,29 +41,27 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       setUser(null);
       throw error;
-    } finally {
-      setLoading(false);
     }
   };
 
   const register = async (name, email, password) => {
-    setLoading(true);
     try {
       const data = await api.register(name, email, password);
-      localStorage.setItem('token', data.token);
-      setUser({
-        _id: data._id,
-        name: data.name,
-        email: data.email,
-        avatarUrl: data.avatarUrl,
-      });
+      // Return data so the component can show a success message before logging in
       return data;
     } catch (error) {
-      setUser(null);
       throw error;
-    } finally {
-      setLoading(false);
     }
+  };
+
+  const finalizeLogin = (data) => {
+    localStorage.setItem('token', data.token);
+    setUser({
+      _id: data._id,
+      name: data.name,
+      email: data.email,
+      avatarUrl: data.avatarUrl,
+    });
   };
 
   const logout = () => {
@@ -73,7 +70,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout, finalizeLogin }}>
       {children}
     </AuthContext.Provider>
   );

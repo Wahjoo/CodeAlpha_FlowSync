@@ -22,7 +22,6 @@ const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [authView, setAuthView] = useState('landing'); // 'landing', 'login', 'signup'
   const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState([]);
   const [activeProjectId, setActiveProjectId] = useState(null);
@@ -336,17 +335,13 @@ const App = () => {
   }
 
   if (!user) {
-    if (authView === 'login') {
-      return <Auth initialIsLogin={true} onBackToLanding={() => setAuthView('landing')} />;
-    }
-    if (authView === 'signup') {
-      return <Auth initialIsLogin={false} onBackToLanding={() => setAuthView('landing')} />;
-    }
     return (
-      <LandingPage 
-        onLoginClick={() => setAuthView('login')} 
-        onSignupClick={() => setAuthView('signup')} 
-      />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Auth initialIsLogin={true} />} />
+        <Route path="/signup" element={<Auth initialIsLogin={false} />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
     );
   }
 
@@ -363,7 +358,11 @@ const App = () => {
       {/* Main Workspace Frame */}
       <main className="pl-64 flex-grow flex flex-col min-w-0 h-screen overflow-y-auto overflow-x-hidden relative custom-scrollbar">
         <Routes>
-          <Route path="/" element={
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/login" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/signup" element={<Navigate to="/dashboard" replace />} />
+          
+          <Route path="/dashboard" element={
             <Dashboard
               projects={projects}
               users={users}
@@ -392,7 +391,7 @@ const App = () => {
                   const email = window.prompt("Enter member email to invite:");
                   if (email) handleInviteMember(email.trim());
                 }}
-                onNavigateBack={() => navigate('/')}
+                onNavigateBack={() => navigate('/dashboard')}
               />
             ) : (
               <div className="flex flex-col items-center justify-center h-full text-center p-stack-lg">
@@ -408,7 +407,7 @@ const App = () => {
             <CreateProject
               users={users}
               onSave={handleSaveProject}
-              onCancel={() => navigate('/')}
+              onCancel={() => navigate('/dashboard')}
             />
           } />
 
@@ -416,7 +415,7 @@ const App = () => {
           <Route path="/team" element={<Team />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/support" element={<Support />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
 
         {location.pathname.startsWith('/project/') && activeTaskDetailsId && activeTask && (

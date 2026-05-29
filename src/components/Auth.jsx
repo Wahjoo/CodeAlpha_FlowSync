@@ -10,7 +10,8 @@ const Auth = ({ initialIsLogin = true, onBackToLanding }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState('');
-  const { login, register } = useAuth();
+  const [success, setSuccess] = useState('');
+  const { login, register, finalizeLogin } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +26,11 @@ const Auth = ({ initialIsLogin = true, onBackToLanding }) => {
       if (isLogin) {
         await login(email, password);
       } else {
-        await register(name, email, password);
+        const data = await register(name, email, password);
+        setSuccess('Account created successfully! Logging you in...');
+        setTimeout(() => {
+          finalizeLogin(data);
+        }, 2000);
       }
     } catch (err) {
       setError(err.message || 'Authentication failed');
@@ -80,7 +85,13 @@ const Auth = ({ initialIsLogin = true, onBackToLanding }) => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        {success && (
+          <div className="mb-4 bg-primary/10 border border-primary/20 text-primary px-4 py-2.5 rounded-lg text-sm text-center font-medium">
+            {success}
+          </div>
+        )}
+
+        <form className="space-y-4">
           {!isLogin && (
             <div className="space-y-1">
               <label className="font-label-md text-label-md text-on-surface">Full Name</label>
@@ -153,7 +164,11 @@ const Auth = ({ initialIsLogin = true, onBackToLanding }) => {
             </div>
           )}
 
-          <button type="submit" className="w-full bg-secondary text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-secondary/20 hover:scale-[1.02] active:scale-95 transition-all mt-6 cursor-pointer">
+          <button 
+            type="button" 
+            onClick={handleSubmit}
+            className="w-full bg-secondary text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-secondary/20 hover:scale-[1.02] active:scale-95 transition-all mt-6 cursor-pointer"
+          >
             {isLogin ? 'Sign In' : 'Create Account'}
           </button>
         </form>
