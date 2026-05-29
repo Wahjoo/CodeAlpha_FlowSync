@@ -41,6 +41,8 @@ export const registerUser = async (req, res, next) => {
         name: user.name,
         email: user.email,
         avatarUrl: user.avatarUrl,
+        type: user.type,
+        role: user.role,
         token: generateToken(user._id),
       });
     } else {
@@ -73,6 +75,8 @@ export const loginUser = async (req, res, next) => {
         name: user.name,
         email: user.email,
         avatarUrl: user.avatarUrl,
+        type: user.type,
+        role: user.role,
         token: generateToken(user._id),
       });
     } else {
@@ -94,6 +98,8 @@ export const getMe = async (req, res, next) => {
       name: req.user.name,
       email: req.user.email,
       avatarUrl: req.user.avatarUrl,
+      type: req.user.type,
+      role: req.user.role,
       bio: req.user.bio,
       pushEnabled: req.user.pushEnabled,
       emailEnabled: req.user.emailEnabled,

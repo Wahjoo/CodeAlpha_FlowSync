@@ -36,6 +36,8 @@ export const AuthProvider = ({ children }) => {
         name: data.name,
         email: data.email,
         avatarUrl: data.avatarUrl,
+        type: data.type,
+        role: data.role,
       });
       return data;
     } catch (error) {
@@ -61,6 +63,8 @@ export const AuthProvider = ({ children }) => {
       name: data.name,
       email: data.email,
       avatarUrl: data.avatarUrl,
+      type: data.type,
+      role: data.role,
     });
   };
 
