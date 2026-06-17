@@ -21,6 +21,9 @@ export default defineConfig({
       manifest: {
         name: 'FlowSync - Project Management',
         short_name: 'FlowSync',
+        description: 'Collaborative Project Management Tool',
+        lang: 'en',
+        dir: 'ltr',
         theme_color: '#ffffff',
         background_color: '#ffffff',
         display: 'standalone',
