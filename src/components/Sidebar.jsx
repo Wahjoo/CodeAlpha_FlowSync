@@ -75,18 +75,33 @@ const Sidebar = ({ isOpen, onClose }) => {
         </Link>
 
         {isAdmin && (
-          <Link
-            onClick={onClose}
-            to="/users"
-            className={`w-full flex items-center gap-stack-md rounded-lg px-stack-md py-stack-sm cursor-pointer transition-all duration-200 active:translate-x-1 ${
-              path.startsWith('/users')
-                ? 'bg-secondary-container text-on-secondary-container font-semibold'
-                : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-secondary-container/20'
-            }`}
-          >
-            <i className="fa-solid fa-user-gear w-5 text-center text-lg"></i>
-            <span className="font-label-md text-label-md">Users Mgmt</span>
-          </Link>
+          <>
+            <Link
+              onClick={onClose}
+              to="/users"
+              className={`w-full flex items-center gap-stack-md rounded-lg px-stack-md py-stack-sm cursor-pointer transition-all duration-200 active:translate-x-1 ${
+                path.startsWith('/users')
+                  ? 'bg-secondary-container text-on-secondary-container font-semibold'
+                  : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-secondary-container/20'
+              }`}
+            >
+              <i className="fa-solid fa-user-gear w-5 text-center text-lg"></i>
+              <span className="font-label-md text-label-md">Users Mgmt</span>
+            </Link>
+            
+            <Link
+              onClick={onClose}
+              to="/admin"
+              className={`w-full flex items-center gap-stack-md rounded-lg px-stack-md py-stack-sm cursor-pointer transition-all duration-200 active:translate-x-1 ${
+                path.startsWith('/admin')
+                  ? 'bg-secondary-container text-on-secondary-container font-semibold'
+                  : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high dark:hover:bg-secondary-container/20'
+              }`}
+            >
+              <i className="fa-solid fa-screwdriver-wrench w-5 text-center text-lg"></i>
+              <span className="font-label-md text-label-md">Admin Panel</span>
+            </Link>
+          </>
         )}
 
         <Link

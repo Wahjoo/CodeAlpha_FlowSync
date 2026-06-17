@@ -16,6 +16,7 @@ import Settings from './components/Settings';
 import Support from './components/Support';
 import Users from './components/Users';
 import ChatWidget from './components/ChatWidget';
+import AdminDashboard from './components/AdminDashboard';
 import { Check } from 'lucide-react';
 
 const App = () => {
@@ -436,6 +437,7 @@ const App = () => {
           <Route path="/task" element={<Tasks />} />
           <Route path="/team" element={<Team onOpenChat={setActiveChatUser} />} />
           <Route path="/users" element={<Users onOpenChat={setActiveChatUser} />} />
+          <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/support" element={<Support />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />

@@ -244,4 +244,39 @@ export const api = {
     });
     return handleResponse(res);
   },
+
+  // Admin Endpoints
+  adminGetAllUsers: async () => {
+    const res = await fetch(`${BASE_URL}/admin/users`, { method: 'GET', headers: getHeaders() });
+    return handleResponse(res);
+  },
+  adminDeleteUser: async (id) => {
+    const res = await fetch(`${BASE_URL}/admin/users/${id}`, { method: 'DELETE', headers: getHeaders() });
+    return handleResponse(res);
+  },
+  adminGetAllProjects: async () => {
+    const res = await fetch(`${BASE_URL}/admin/projects`, { method: 'GET', headers: getHeaders() });
+    return handleResponse(res);
+  },
+  adminDeleteProject: async (id) => {
+    const res = await fetch(`${BASE_URL}/admin/projects/${id}`, { method: 'DELETE', headers: getHeaders() });
+    return handleResponse(res);
+  },
+  adminGetAllTasks: async () => {
+    const res = await fetch(`${BASE_URL}/admin/tasks`, { method: 'GET', headers: getHeaders() });
+    return handleResponse(res);
+  },
+  adminDeleteTask: async (id) => {
+    const res = await fetch(`${BASE_URL}/admin/tasks/${id}`, { method: 'DELETE', headers: getHeaders() });
+    return handleResponse(res);
+  },
+  adminGetAllComments: async () => {
+    const res = await fetch(`${BASE_URL}/admin/comments`, { method: 'GET', headers: getHeaders() });
+    return handleResponse(res);
+  },
+  adminDeleteComment: async (id) => {
+    const res = await fetch(`${BASE_URL}/admin/comments/${id}`, { method: 'DELETE', headers: getHeaders() });
+    return handleResponse(res);
+  },
 };
+
