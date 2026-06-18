@@ -116,7 +116,7 @@ const TaskModal = ({ task, listName, projectMembers, onClose, onUpdateTask, onDe
   };
 
   return (
-    <div className="absolute inset-0 z-50 w-full h-full flex flex-col bg-background text-on-surface overflow-hidden">
+    <div className="h-full w-full flex flex-col bg-background text-on-surface overflow-hidden">
         
         {/* Top bar header */}
         <header className="flex items-center justify-between px-stack-lg border-b border-outline-variant/10 h-16 bg-surface-container-lowest flex-shrink-0">

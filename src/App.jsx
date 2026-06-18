@@ -363,7 +363,7 @@ const App = () => {
       <Sidebar isOpen={isMobileSidebarOpen} onClose={() => setIsMobileSidebarOpen(false)} />
 
       {/* Main Workspace Frame */}
-      <main className="md:pl-64 flex-grow flex flex-col min-w-0 h-screen overflow-y-auto overflow-x-hidden relative custom-scrollbar">
+      <main className={`md:pl-64 flex-grow flex flex-col min-w-0 h-screen relative custom-scrollbar ${location.pathname.startsWith('/project/') ? 'overflow-hidden' : 'overflow-y-auto overflow-x-hidden'}`}>
         {/* Mobile Header Bar */}
         <div className="md:hidden flex items-center justify-between p-4 bg-surface-container-lowest border-b border-outline-variant/10 sticky top-0 z-40 w-full">
           <div className="flex items-center gap-2">
@@ -444,16 +444,18 @@ const App = () => {
         </Routes>
 
         {location.pathname.startsWith('/project/') && activeTaskDetailsId && activeTask && (
-          <TaskModal
-            task={activeTask}
-            listName={activeTaskListName}
-            projectMembers={projectData?.project?.members}
-            onClose={() => {
-              setActiveTaskDetailsId(null);
-            }}
-            onUpdateTask={handleUpdateTask}
-            onDeleteTask={handleDeleteTask}
-          />
+          <div className="absolute inset-0 md:left-64 z-50">
+            <TaskModal
+              task={activeTask}
+              listName={activeTaskListName}
+              projectMembers={projectData?.project?.members}
+              onClose={() => {
+                setActiveTaskDetailsId(null);
+              }}
+              onUpdateTask={handleUpdateTask}
+              onDeleteTask={handleDeleteTask}
+            />
+          </div>
         )}
         {/* Chat Widget rendering globally so it persists across navigation */}
         <ChatWidget 

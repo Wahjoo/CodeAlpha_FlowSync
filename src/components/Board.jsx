@@ -109,7 +109,7 @@ const Board = ({
   };
 
   return (
-    <div className="flex-grow flex flex-col min-w-0 bg-surface text-on-surface">
+    <div className="flex-grow flex flex-col min-w-0 bg-surface text-on-surface min-h-0">
       {/* Board Header details */}
       <section className="p-stack-lg flex flex-col md:flex-row md:items-center justify-between border-b border-outline-variant/10 gap-4">
         <div>
@@ -151,7 +151,7 @@ const Board = ({
       </section>
 
       {/* Kanban Board columns lane */}
-      <div className="flex-grow overflow-x-auto p-stack-lg pt-4 flex gap-stack-lg items-start custom-scrollbar snap-x snap-mandatory">
+      <div className="flex-grow overflow-x-auto p-stack-lg pt-4 flex gap-stack-lg items-stretch custom-scrollbar snap-x snap-mandatory min-h-0">
         {lists.map((list) => {
           const listTasks = getTasksForList(list._id);
           const isAddingTask = activeListAddTask === list._id;
@@ -159,7 +159,7 @@ const Board = ({
           return (
             <div 
               key={list._id} 
-              className={`flex flex-col min-w-[300px] w-[85vw] md:w-80 bg-surface-container-low/50 rounded-2xl p-4 border transition-all snap-center ${
+              className={`flex flex-col min-w-[300px] w-[85vw] md:w-80 bg-surface-container-low/50 rounded-2xl p-4 border transition-all snap-center max-h-full min-h-0 ${
                 activeDragOverList === list._id ? 'border-dashed border-secondary bg-surface-container-high/50' : 'border-transparent'
               }`}
               onDragOver={(e) => handleDragOver(e, list._id)}
@@ -284,7 +284,7 @@ const Board = ({
 
         {/* Add column lane trigger button */}
         {isAddingList ? (
-          <form onSubmit={handleAddListSubmit} className="flex flex-col min-w-[300px] w-80 bg-surface-container-low/50 rounded-2xl p-4 border border-outline-variant/30 space-y-3">
+          <form onSubmit={handleAddListSubmit} className="flex flex-col min-w-[300px] w-80 bg-surface-container-low/50 rounded-2xl p-4 border border-outline-variant/30 space-y-3 self-start">
             <input
               type="text"
               className="w-full px-4 py-2 rounded-xl border border-outline-variant focus:border-secondary focus:ring-2 focus:ring-secondary/10 transition-all text-body-md text-on-surface outline-none"
@@ -313,7 +313,7 @@ const Board = ({
         ) : (
           <button 
             onClick={() => setIsAddingList(true)}
-            className="flex flex-col min-w-[300px] w-80 bg-surface-container-low/20 border-2 border-dashed border-outline-variant/30 hover:border-secondary hover:bg-secondary/5 rounded-2xl items-center justify-center p-6 transition-all cursor-pointer min-h-[140px]"
+            className="flex flex-col min-w-[300px] w-80 bg-surface-container-low/20 border-2 border-dashed border-outline-variant/30 hover:border-secondary hover:bg-secondary/5 rounded-2xl items-center justify-center p-6 transition-all cursor-pointer min-h-[140px] self-start"
           >
             <div className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant mb-2">
               <i className="fa-solid fa-plus text-sm"></i>

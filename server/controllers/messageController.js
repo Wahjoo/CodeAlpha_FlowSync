@@ -1,4 +1,5 @@
 import Message from '../models/Message.js';
+import Notification from '../models/Notification.js';
 
 // @desc    Get conversation between current user and target user
 // @route   GET /api/messages/:userId
@@ -51,6 +52,18 @@ export const sendMessage = async (req, res, next) => {
     const io = req.app.get('socketio');
     if (io) {
       io.to(`user:${receiverId}`).emit('chat:receive', populatedMessage);
+    }
+
+    // Create an in-app notification for the receiver
+    const senderName = req.user.name;
+    const notification = await Notification.create({
+      recipient: receiverId,
+      title: 'New Message',
+      message: `${senderName} sent you a message: "${content.length > 60 ? content.slice(0, 57) + '...' : content}"`,
+    });
+
+    if (io) {
+      io.to(`user:${receiverId}`).emit('notification:new', notification);
     }
 
     res.status(201).json(populatedMessage);
